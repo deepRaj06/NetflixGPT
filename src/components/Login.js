@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react'
 import Header from './Header'
 import netflix_bg_1 from '../assets/images/netflix_bg_1.jpg';
 import { checkValidData } from '../utils/Validate';
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from '../utils/firebase';
 
 const Login = () => {
@@ -54,6 +54,19 @@ const Login = () => {
 
     }else{
       // 4. signin logic
+      signInWithEmailAndPassword(auth,email.current.value, password.current.value)
+        .then((userCredential) => {
+          // Signed in 
+          const user = userCredential.user;
+          console.log("signin_user", user)
+          // ...
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          setErrorMessage(errorCode+ "-" + errorMessage)
+
+        });
 
     }
   }
