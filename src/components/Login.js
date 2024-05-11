@@ -94,10 +94,10 @@ const Login = () => {
   }
   return (
     <div>
+      <Header />
       <div className='absolute'>
-        <Header />
         <img
-          className='w-full'
+          className='w-screen'
           // style={{ width: "100%" }}
           src={netflix_bg}
           alt='logo' />
