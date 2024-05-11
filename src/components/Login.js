@@ -6,6 +6,8 @@ import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfi
 import { auth } from '../utils/firebase';
 import { useDispatch } from 'react-redux';
 import { addUser } from '../utils/userSlice';
+import netflix_user_icon from '../assets/images/netflix_user_icon.png';
+import { PHOTO_URL } from '../utils/constants';
 
 const Login = () => {
 
@@ -46,7 +48,7 @@ const Login = () => {
           const user = userCredential.user;
 
           updateProfile(user, {
-            displayName: name.current.value, photoURL: "https://avatars.githubusercontent.com/u/101570965?v=4"
+            displayName: name.current.value, photoURL: PHOTO_URL
           }).then(() => {
             // once Profile updated!, then navigate
             const { uid, email, displayName, photoURL } = auth.currentUser; // updated user info as above user doesn't have updated info
