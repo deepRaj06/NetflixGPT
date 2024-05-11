@@ -4,7 +4,6 @@ import netflix_bg_1 from '../assets/images/netflix_bg_1.jpg';
 import { checkValidData } from '../utils/Validate';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from '../utils/firebase';
-import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { addUser } from '../utils/userSlice';
 
@@ -16,7 +15,6 @@ const Login = () => {
   const name = useRef(null);
   const email = useRef(null); // creating refernce for email
   const password = useRef(null);
-  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const toggleSignInForm = () => {
@@ -53,7 +51,7 @@ const Login = () => {
             // once Profile updated!, then navigate
             const { uid, email, displayName, photoURL } = auth.currentUser; // updated user info as above user doesn't have updated info
             dispatch(addUser({ uid: uid, email: email, displayName:displayName, photoURL: photoURL }))              
-            navigate("/browse")
+            // navigate("/browse")
             // ...
           }).catch((error) => {
             // An error occurred
@@ -79,7 +77,7 @@ const Login = () => {
           // Signed in 
           const user = userCredential.user;
           console.log("signin_user", user);
-          navigate("/browse")
+          // navigate("/browse")
           // ...
         })
         .catch((error) => {
