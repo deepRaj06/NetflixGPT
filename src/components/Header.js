@@ -26,7 +26,7 @@ const Header = () => {
   }
 
   useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         console.log("userBody", user.displayName)
 
@@ -43,6 +43,8 @@ const Header = () => {
         // ...
       }
     });
+    // unsubscribe when the component mounts
+    return () => unsubscribe();
   }, [])
   return (
     <div className='absolute px-8 py-2 bg-gradient-to-b from-black z-10 w-screen flex justify-between'>
