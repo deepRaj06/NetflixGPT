@@ -11,7 +11,7 @@ const Browse = () => {
   usePopularMovies();
 
   return (
-    <div>
+    <div className='w-full overflow-x-hidden no-scrollbar'>
       <Header />
       {/* 
       *********************Structuring Movies**********************

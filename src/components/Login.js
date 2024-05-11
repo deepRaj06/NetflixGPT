@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react'
 import Header from './Header'
-import netflix_bg_1 from '../assets/images/netflix_bg_1.jpg';
+// import netflix_bg_1 from '../assets/images/netflix_bg_1.jpg';
+import netflix_bg from '../assets/images/netflix_bg.jpg';
 import { checkValidData } from '../utils/Validate';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from '../utils/firebase';
@@ -98,7 +99,7 @@ const Login = () => {
         <img
           className='w-full'
           // style={{ width: "100%" }}
-          src={netflix_bg_1}
+          src={netflix_bg}
           alt='logo' />
       </div>
       <form onSubmit={(e) => e.preventDefault()} className='absolute p-12 bg-black w-3/12 my-36 mx-auto right-0 left-0 text-white rounded-lg bg-opacity-80'>
