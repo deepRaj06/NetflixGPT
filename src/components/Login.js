@@ -4,6 +4,7 @@ import netflix_bg_1 from '../assets/images/netflix_bg_1.jpg';
 import { checkValidData } from '../utils/Validate';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from '../utils/firebase';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
 
@@ -13,6 +14,7 @@ const Login = () => {
   const name = useRef(null);
   const email = useRef(null); // creating refernce for email
   const password = useRef(null);
+  const navigate = useNavigate();
 
   const toggleSignInForm = () => {
     setIsSignInForm(!isSignInForm);
@@ -41,7 +43,8 @@ const Login = () => {
         .then((userCredential) => {
           // Signed up 
           const user = userCredential.user;
-          console.log("user", user)
+          console.log("user", user);
+          navigate("/browse")
           // ...
         })
         .catch((error) => {
@@ -58,7 +61,8 @@ const Login = () => {
         .then((userCredential) => {
           // Signed in 
           const user = userCredential.user;
-          console.log("signin_user", user)
+          console.log("signin_user", user);
+          navigate("/browse")
           // ...
         })
         .catch((error) => {
