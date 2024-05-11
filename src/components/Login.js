@@ -2,9 +2,11 @@ import React, { useRef, useState } from 'react'
 import Header from './Header'
 import netflix_bg_1 from '../assets/images/netflix_bg_1.jpg';
 import { checkValidData } from '../utils/Validate';
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from '../utils/firebase';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { addUser } from '../utils/userSlice';
 
 const Login = () => {
 
@@ -15,6 +17,7 @@ const Login = () => {
   const email = useRef(null); // creating refernce for email
   const password = useRef(null);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const toggleSignInForm = () => {
     setIsSignInForm(!isSignInForm);
@@ -43,8 +46,22 @@ const Login = () => {
         .then((userCredential) => {
           // Signed up 
           const user = userCredential.user;
+
+          updateProfile(user, {
+            displayName: name.current.value, photoURL: "https://avatars.githubusercontent.com/u/101570965?v=4"
+          }).then(() => {
+            // once Profile updated!, then navigate
+            const { uid, email, displayName, photoURL } = auth.currentUser; // updated user info as above user doesn't have updated info
+            dispatch(addUser({ uid: uid, email: email, displayName:displayName, photoURL: photoURL }))              
+            navigate("/browse")
+            // ...
+          }).catch((error) => {
+            // An error occurred
+            setErrorMessage(error.Message)
+            // ...
+          });
           console.log("user", user);
-          navigate("/browse")
+          // navigate("/browse")
           // ...
         })
         .catch((error) => {

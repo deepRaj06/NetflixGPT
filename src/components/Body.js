@@ -26,10 +26,12 @@ const Body = () => {
     useEffect(() => {
         onAuthStateChanged(auth, (user) => {
             if (user) {
+                console.log("userBody", user.displayName)
+
               // User is signed in (whether form signedin or signup),
             //   const uid = user.uid;
-            const { uid, email, displayName } = user;
-                dispatch(addUser({ uid: uid, email: email, displayName:displayName }))
+            const { uid, email, displayName, photoURL } = user;
+                dispatch(addUser({ uid: uid, email: email, displayName:displayName, photoURL: photoURL }))
               // ...
             } else {
               // User is signed out
