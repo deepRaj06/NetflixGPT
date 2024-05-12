@@ -10,7 +10,7 @@ const GptSearch = () => {
         GptSearchbar
         GptMovieSuggestions
        */}
-       <div className='absolute -z-10'>
+       <div className='fixed -z-10'>
         <img
           className='w-screen overflow-x-hidden m-0'
           // style={{ width: "100%" }}
