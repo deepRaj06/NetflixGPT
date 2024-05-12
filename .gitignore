@@ -25,3 +25,5 @@ yarn-error.log*
 About.txt
 
 openai.js
+
+.env
