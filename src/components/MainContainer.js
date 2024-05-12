@@ -17,7 +17,7 @@ const MainContainer = () => {
     const { original_title, overview, id } = mainMovie;
 
   return (
-    <div>
+    <div className='pt-[30%] bg-black md:pt-0'>
         {/* Netflic browse main running video title and background */}
         <VideoTitle title={original_title} overview={overview}/>
         <VideoBackground movieId={id}/>

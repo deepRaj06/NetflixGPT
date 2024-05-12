@@ -5,21 +5,21 @@ import netflix_bg from '../assets/images/netflix_bg.jpg';
 
 const GptSearch = () => {
   return (
-    <div>
-      {/* 
-        GptSearchbar
-        GptMovieSuggestions
-       */}
-       <div className='fixed -z-10'>
+
+    <>
+      <div className='fixed -z-10'>
         <img
-          className='w-screen overflow-x-hidden m-0'
+          className=' h-screen object-cover w-screen overflow-x-hidden m-0'
           // style={{ width: "100%" }}
           src={netflix_bg}
           alt='logo' />
       </div>
-       <GptSearchBar/>
-       <GptMovieSuggestions/>
-    </div>
+      <div className=''>
+        <GptSearchBar />
+        <GptMovieSuggestions />
+      </div>
+    </>
+
   )
 }
 

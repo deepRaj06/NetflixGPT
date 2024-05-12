@@ -62,14 +62,19 @@ const Header = () => {
     return () => unsubscribe();
   }, [])
   return (
-    <div className='absolute px-8 py-2 bg-gradient-to-b from-black z-10 w-screen flex justify-between'>
+    // if screen size > small devices 
+    // then sm: --> this will apply to tab 
+    // and md: ==> will apply to desktop
+    // default will apply to mobile i.e. bg-black
+    // bg-black sm:bg-blue-900 md:bg-green-900
+    <div className='absolute px-8 py-2 bg-gradient-to-b from-black z-10 w-screen flex flex-col md:flex-row justify-between '>
       <img
-        className='w-44'
+        className='w-44 mx-auto md:mx-0'
         src={netflix_logo}
         alt='logo'
       />
       {
-        user && <div className='flex p-2'>
+        user && <div className='flex p-2 justify-between'>
           {showGptSearch && <select className='p-2 px-3 m-2 bg-gray-900 text-white rounded-lg' onChange={handleLanguageChange}>
             {
               SUPPORTED_LANGUAGES.map((lang) => (
@@ -79,7 +84,7 @@ const Header = () => {
           </select>}
           <button className='py-2 px-4 mx-4 my-2 bg-purple-800 text-white rounded-lg' onClick={handleGptSearchClick}>{showGptSearch ? "Home" : "GPT Search"}</button>
           <img
-            className='w-12 h-12 '
+            className='hidden md:block w-12 h-12 '
             alt='usericon'
             // src={netflix_user_icon}
             src={user?.photoURL}
